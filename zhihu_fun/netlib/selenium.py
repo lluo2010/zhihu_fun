@@ -13,7 +13,7 @@ from ..toollib.answer import _get_answers
 
 
 def _get_driver():
-    driver = webdriver.PhantomJS(desired_capabilities=_set_driver_ua())
+    driver = webdriver.PhantomJS(r'D:\Program Files\phantomjs-2.1.1-windows\bin\phantomjs.exe')
     Logger.info('Initialize PhantomJS Webdriver')
     _set_cookies(driver, my_session().cookies)
     Logger.info('Initialize Webdriver Cookies')
@@ -62,7 +62,11 @@ def _open_load_more(driver, recur_depth=0, max_depth=3):
 
 
 def _get_question_h4_answer_count(driver):
-    return int(driver.find_element_by_class_name('List-headerText').text.split(' ')[0])
+    try:
+        return int(driver.find_element_by_class_name('List-headerText').text.split(' ')[0])
+    except Exception as e:
+        Logger.warning('Get Answer Count Error {}'.format(str(e)))
+        return 0
 
 
 def _open_question_load_more(driver, recur_depth=1, max_depth=10):

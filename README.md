@@ -105,4 +105,5 @@ config = {
     'key_number': 2,
     'vote_up': 10,  # 根据答案的赞同数来判定是否爬取图片
     'url_generate_time': 30  # 设置 url generate 运行的时间, 设置为 None 代表一直跑下去, 不能为 '', ""
+}
 ```
